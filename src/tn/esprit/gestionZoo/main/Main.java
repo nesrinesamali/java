@@ -1,4 +1,6 @@
 package tn.esprit.gestionZoo.main;
+import tn.esprit.gestionZoo.Exception.InvalidAgeException;
+import tn.esprit.gestionZoo.Exception.ZooFullException;
 
 import tn.esprit.gestionZoo.entities.*;
 
@@ -17,11 +19,11 @@ public class Main {
         Zoo z2 =new Zoo("chien","belvidére",20);
         Animal torture=new Animal("mammal","torture",-1, false);
         myZoo.display();
-        System.out.println(myZoo);
-        System.out.println(myZoo.toString());
-        System.out.println(z1. addAnimal(lion));
-        System.out.println(z1.addAnimal(torture));
-        System.out.println(z1.addAnimal(tigre));
+//        System.out.println(myZoo);
+//        System.out.println(myZoo.toString());
+//        System.out.println(z1. addAnimal(lion));
+//        System.out.println(z1.addAnimal(torture));
+//        System.out.println(z1.addAnimal(tigre));
 
         System.out.println(myZoo.removeAnimal(lion));
         System.out.println(Zoo.comparerZoo(z1,z2));
@@ -42,6 +44,31 @@ public class Main {
 
         dolphin.swim();
         penguin.swim();
+        try{
+            myZoo.addAnimal(lion);
+            myZoo.addAnimal(tigre);
+            myZoo.addAnimal(new Animal("lions","lion",5,true));
+            myZoo.addAnimal(new Animal("tigers","tigre",2,true));
+
+        }catch (ZooFullException e){
+            System.out.println(e.getMessage());
+        }catch(InvalidAgeException e){
+            System.out.println(e.getMessage());
+        }finally {
+            System.out.println(myZoo.getNbrAnimals());
+        }
+        Zoo myZoo2 = new Zoo("WaterPark", "Siliana",15);
+        try{ myZoo2.addAnimal(lion);
+        }catch(ZooFullException e){
+            System.out.println(e.getMessage());
+        }catch(InvalidAgeException e){
+            System.out.println(e.getMessage());
+        }finally{
+            System.out.println(myZoo2.getNbrAnimals());
+        }
+
+
+
 
     }
 
